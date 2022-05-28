@@ -1,12 +1,53 @@
-import React, { useState } from 'react'
+import React, { useMemo, useState } from 'react'
 
 import "./Home.css"
 
 const Home = () => {
 
-      const [input,setInput]=useState(null)
+      const [input,setInput]=useState("")
+
+      const [color,setColor]=useState([]);
+
+       const [shootingColor,setShootingColor]=useState([])
+
+      let arr=[];
+
+      let randomColor=()=>{
+     
+         let r=Math.floor(Math.random()*255)
+         let g=Math.floor(Math.random()*255)
+         let b=Math.floor(Math.random()*255)
+       arr.push(`rgb(${r},${g},${b})`)
+
+      }
+
+      useMemo(()=>{
+      
+        for(let i=0;i<5;i++){
+           randomColor()
+        }
+
+        setColor(arr)
+      },[])
 
 
+      //  move to box 
+       const moveToBox=()=>{
+
+        setShootingColor([...shootingColor ,...color.splice(input-1,1)])
+
+        
+
+       }
+
+       // move  box to circle div
+        
+        const moveToCircle=(index)=>{
+
+          setColor([...color ,...shootingColor.splice(index,1)])
+          
+
+        }
 
 
 
@@ -18,7 +59,22 @@ const Home = () => {
     <div className="container">
         
         <div className="emptyDiv">
+        {
+          shootingColor && shootingColor.map((colorItem,index)=>{
 
+              return  <div key={index} className="circle boxcircle"
+              
+              style={{ backgroundColor: `${colorItem}` }}
+          
+               onClick={()=>{moveToCircle(index) }}
+
+              >
+              </div>
+
+              })
+
+              }
+          
 
 
 
@@ -27,13 +83,19 @@ const Home = () => {
 
     <div className="circleDiv">
 
-             <div className="first circle">
-                 
-             </div>
-             <div className="second circle"></div>
-             <div className="third circle"></div>
-             <div className="fourth circle"></div>
-             <div className="fiveth circle"></div>
+              {
+              color && color.map((colorItem,index)=>{
+
+              return  <div key={index} className="circle"
+              
+              style={{ backgroundColor: `${colorItem}` }}
+              >
+              </div>
+
+              })
+
+              }
+          
 
     </div>
       
@@ -46,8 +108,8 @@ const Home = () => {
 
               />
              <button
-             
-             
+              
+              onClick={() => moveToBox()}
              >shoot</button>
            
 

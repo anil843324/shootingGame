@@ -12,6 +12,10 @@
     background-color: aqua;
      border:  1px solid black;
      border-radius: 5px;
+     
+      display: flex;
+      flex-direction: row;
+      gap: 20px;
 }
 
 .circleDiv{
@@ -19,8 +23,13 @@
     width: 25%;
     height: 600px;
     /* background-color: red; */
-    display: grid;
-    place-items: center;
+     display: flex;
+     flex-direction: column;
+      gap: 20px;
+     align-items: center;
+}
+.boxcircle{
+     cursor: pointer;
 }
 .circle{
 
