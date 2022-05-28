@@ -1,8 +1,9 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { v4 } from "uuid";
 
 import "./Home.css";
 
+// initial Source Data
 const initialData = [
   { id: v4(), color: "red", display: "block", screenCount: 1 },
   { id: v4(), color: "blue", display: "block", screenCount: 2 },
@@ -11,19 +12,23 @@ const initialData = [
   { id: v4(), color: "green", display: "block", screenCount: 5 },
 ];
 
+// state of source container --> source
+// state of empty Div --> target
+
 const Home = () => {
   const [input, setInput] = useState("");
 
-  const [color, setColor] = useState(initialData);
+  const [source, setSource] = useState(initialData);
 
-  const [shootingColor, setShootingColor] = useState([]);
+  const [target, setTarget] = useState([]);
 
-  const moveToBox = (id) => {
-    const newColor = color.map((item) => {
+  //   function to move  a ball from source to target
+  const moveToBox = () => {
+    const newColor = source.map((item) => {
       if (item.screenCount === +input) {
         item.display = "none";
         item.screenCount = 0;
-        setShootingColor((prev) => [...prev, item]);
+        setTarget((prev) => [...prev, item]);
       }
       return item;
     });
@@ -36,43 +41,41 @@ const Home = () => {
       return item;
     });
 
-    setColor(newOrder);
+    setSource(newOrder);
   };
 
-  useEffect(() => {
-    console.log(shootingColor);
-  }, [shootingColor]);
-
+  // function to move a ball from target to source
   const moveToCircle = (id) => {
-    const newShootingColorArray = shootingColor.filter(
-      (item) => item.id !== id
-    );
-    setShootingColor(newShootingColorArray);
 
-    const newColorArray = color.map((item) => {
+    const newtargetArray = target.filter((item) => item.id !== id);
+
+    setTarget(newtargetArray);
+
+    const newColorArray = source.map((item) => {
       if (item.id === id) {
         item.display = "block";
       }
       return item;
     });
 
-     let count=1;
-      const newScreenOrder=newColorArray.map((item) => {
-        if (item.display === "block") {
-          item.screenCount = count;
-          count++;
-        }
-        return item;
-      });
+    let count = 1;
+    const newScreenOrder = newColorArray.map((item) => {
+      if (item.display === "block") {
+        item.screenCount = count;
+        count++;
+      }
+      return item;
+    });
 
-       setColor(newScreenOrder)
+    setSource(newScreenOrder);
   };
 
   return (
     <div className="container">
+      {/*  empty Div */}
       <div className="emptyDiv">
-        {shootingColor[0] &&
-          shootingColor.map((colorItem) => {
+        {target[0] &&
+          target.map((colorItem) => {
             return (
               <div
                 key={colorItem.id}
@@ -85,9 +88,12 @@ const Home = () => {
             );
           })}
       </div>
+
+      {/*  Circle div */}
+
       <div className="circleDiv">
-        {color &&
-          color.map((item) => {
+        {source &&
+          source.map((item) => {
             return (
               <div
                 key={item.id}
@@ -100,6 +106,9 @@ const Home = () => {
             );
           })}
       </div>
+
+      {/*  Button  Div */}
+
       <div className="buttonDiv">
         <input
           type="number"
@@ -109,7 +118,6 @@ const Home = () => {
         />
         <button onClick={() => moveToBox()}>shoot</button>
       </div>
-      .
     </div>
   );
 };
