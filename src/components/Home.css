@@ -1,0 +1,60 @@
+
+.container{
+
+     display:  flex;
+
+}
+
+.emptyDiv{
+
+    width: 50%;
+    height: 500px;
+    background-color: aqua;
+     border:  1px solid black;
+     border-radius: 5px;
+}
+
+.circleDiv{
+ 
+    width: 25%;
+    height: 600px;
+    /* background-color: red; */
+    display: grid;
+    place-items: center;
+}
+.circle{
+
+    height: 80px;
+    width: 80px;
+    border-radius: 50%;
+    border: 1px solid black;
+   
+   }
+
+.buttonDiv{
+    width: 25%;
+    height: 600px;
+    background-color: bisque;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     justify-content: center;
+     gap: 50px;
+
+}
+
+.buttonDiv input{
+
+      height: 30px;
+      border-radius: 5px;
+
+}
+
+.buttonDiv button{
+
+     padding: 10px;
+     font-size: 16px;
+     font-weight: 600;
+     cursor: pointer;
+     border-radius: 5px;
+}
