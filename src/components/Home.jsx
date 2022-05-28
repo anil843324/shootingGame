@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { v4 } from "uuid";
 
 import "./Home.css";
@@ -24,29 +24,38 @@ const Home = () => {
 
   //   function to move  a ball from source to target
   const moveToBox = () => {
-    const newColor = source.map((item) => {
-      if (item.screenCount === +input) {
-        item.display = "none";
-        item.screenCount = 0;
-        setTarget((prev) => [...prev, item]);
-      }
-      return item;
-    });
-    let count = 1;
-    const newOrder = newColor.map((item) => {
-      if (item.display === "block") {
-        item.screenCount = count;
-        count++;
-      }
-      return item;
-    });
+    if (!+input) {
+      alert("Please enter some numeric value before hitting the button");
+    } else {
+      const found = target.find((element) => element.screenCount === +input);
+      if (found) {
+        alert("This box is already available in the div");
+        setInput(" ");
+      } else {
+        const found = source.find((element) => element.screenCount === +input);
 
-    setSource(newOrder);
+        if (!found) {
+          alert("🤠 please enter the value between 1 to 5 🤠");
+
+          setInput(" ");
+        } else {
+          const newColor = source.map((item) => {
+            if (item.screenCount === +input) {
+              item.display = "none";
+              // item.screenCount = 0;
+              setTarget((prev) => [...prev, item]);
+            }
+            return item;
+          });
+          setSource(newColor);
+          setInput(" ");
+        }
+      }
+    }
   };
 
   // function to move a ball from target to source
   const moveToCircle = (id) => {
-
     const newtargetArray = target.filter((item) => item.id !== id);
 
     setTarget(newtargetArray);
@@ -57,17 +66,7 @@ const Home = () => {
       }
       return item;
     });
-
-    let count = 1;
-    const newScreenOrder = newColorArray.map((item) => {
-      if (item.display === "block") {
-        item.screenCount = count;
-        count++;
-      }
-      return item;
-    });
-
-    setSource(newScreenOrder);
+    setSource(newColorArray);
   };
 
   return (
@@ -84,7 +83,9 @@ const Home = () => {
                 onClick={() => {
                   moveToCircle(colorItem.id);
                 }}
-              ></div>
+              >
+                <h1 style={{ textAlign: "center" }}>{colorItem.screenCount}</h1>
+              </div>
             );
           })}
       </div>
@@ -102,7 +103,9 @@ const Home = () => {
                   backgroundColor: `${item.color} `,
                   display: `${item.display}`,
                 }}
-              ></div>
+              >
+                <h1 style={{ textAlign: "center" }}>{item.screenCount}</h1>
+              </div>
             );
           })}
       </div>
@@ -113,10 +116,10 @@ const Home = () => {
         <input
           type="number"
           value={input}
-          placeholder="Enter Number"
+          placeholder={`Enter the number from 1 to  5`}
           onChange={(event) => setInput(event.target.value)}
         />
-        <button onClick={() => moveToBox()}>shoot</button>
+        <button onClick={() => moveToBox()}>Shoot</button>
       </div>
     </div>
   );
