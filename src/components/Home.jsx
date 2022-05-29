@@ -71,8 +71,17 @@ const Home = () => {
 
   return (
     <div className="container">
-      {/*  empty Div */}
-      <div className="emptyDiv">
+    
+        {/*  title container */}
+       <div className="titleContainer">
+       <h1 >Hello syngenta</h1>
+        <h3>Welcome to the assignment of syngenta!</h3>
+       </div>
+
+        {/*  box container */}
+          <div className="boxContainer">
+       {/*  empty Div */}
+          <div className="emptyDiv">
         {target[0] &&
           target.map((colorItem) => {
             return (
@@ -84,7 +93,7 @@ const Home = () => {
                   moveToCircle(colorItem.id);
                 }}
               >
-                <h1 style={{ textAlign: "center" }}>{colorItem.screenCount}</h1>
+                <p style={{ textAlign: "center" ,fontWeight:"bold",fontSize:"20px"}}>{colorItem.screenCount}</p>
               </div>
             );
           })}
@@ -104,7 +113,7 @@ const Home = () => {
                   display: `${item.display}`,
                 }}
               >
-                <h1 style={{ textAlign: "center" }}>{item.screenCount}</h1>
+                <p style={{ textAlign: "center" ,fontWeight:"bold",fontSize:"20px"}}>{item.screenCount}</p>
               </div>
             );
           })}
@@ -121,6 +130,9 @@ const Home = () => {
         />
         <button onClick={() => moveToBox()}>Shoot</button>
       </div>
+          </div>
+    
+
     </div>
   );
 };

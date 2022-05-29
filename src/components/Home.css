@@ -1,76 +1,136 @@
-
-
-.container{
-
-     display:  flex;
-     
-     
-}
-
-.emptyDiv{
-
-    width: 50%;
-    height: 500px;
-    
-     border:  1px solid black;
-     border-radius: 5px;
-     
-      display: flex;
-      flex-direction: row;
-      gap: 20px;
-}
-
-.circleDiv{
+.container {
+  display: flex;
+  flex-direction: column;
  
-    width: 25%;
-    height: 600px;
-  
-     display: flex;
-     flex-direction: column;
-      gap: 20px;
-     align-items: center;
 }
-.boxcircle{
-     cursor: pointer;
-}
-.circle{
 
-    height: 80px;
-    width: 80px;
-    border-radius: 50%;
-    border: 1px solid black;
+.titleContainer{
+     text-align: center;
+
+}
+.titleContainer h1{
+   color: green;
+
+}
+.titleContainer h3{
+      color: #00048B;
+}
+.boxContainer{
+
+     display: flex;
+     margin-top: 50px;
+     padding-left: 50px;
    
-   }
+}
+.emptyDiv {
+  width: 40%;
+  height: 400px;
 
-.buttonDiv{
-    width: 25%;
-    height: 600px;
-  
+  border: 1px solid black;
+  border-radius: 5px;
+
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  padding: 10px;
+}
+
+.circleDiv {
+  width: 25%;
+  height: 450px;
+  gap: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+ 
+}
+.boxcircle {
+  cursor: pointer;
+}
+.circle {
+  height: 80px;
+  width: 80px;
+  border-radius: 50%;
+  border: 1px solid black;
+}
+
+.buttonDiv {
+  width: 25%;
+  height: 400px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 50px;
+}
+
+.buttonDiv input {
+  width: 70%;
+  height: 30px;
+  border-radius: 5px;
+}
+
+.buttonDiv button {
+  width: 40%;
+  padding: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 5px;
+  background-color: rgb(58, 54, 54);
+  color: white;
+}
+
+@media screen and (max-width: 500px) {
+  body {
+    margin: 10px;
+    padding: 0px;
+  }
+  .container {
+    display: grid;
+    place-items: center;
+  }
+  .boxContainer{
+
      display: flex;
      flex-direction: column;
-     align-items: center;
-     justify-content: center;
-     gap: 50px;
+     margin-top: 0px;
+     padding-left: 0px;
 
 }
+  .circleDiv {
+    flex-direction: row;
+    width: 90%;
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .emptyDiv {
+   
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    width: 100%;
+    height: 200px;
+    padding: 10px;
+  }
+  .buttonDiv {
+    height: 200px;
+    width: 100%;
+  }
 
-.buttonDiv input{
+  .circle {
+    justify-content: center;
+    height: 55px;
+    width: 55px;
+    border-radius: 50%;
+  }
 
-      width: 70%;
-      height: 30px;
-      border-radius: 5px;
-  
-}
-
-.buttonDiv button{
-
-      
-      width: 40%;
-     padding: 10px;
-     font-size: 16px;
-     font-weight: 600;
-     cursor: pointer;
-     border-radius: 5px;
-     background-color: rgb(58, 54, 54);
-     color: white;
+  .buttonDiv input {
+    width: 55%;
+    height: 45px;
+    border-radius: 5px;
+  }
 }
